@@ -1,0 +1,26 @@
+@mixin container {
+  max-width: 500px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+@mixin pStyle {
+  margin: 5px 0px;
+  font-size: 16px;
+  line-height: 1.5;
+}
+
+@mixin inputStyle {
+  box-sizing: border-box;
+  border-radius: 3px;
+  border-color: $border-color;
+}
+
+@mixin buttonStyle {
+  height: 35px;
+  color: white;
+  font-weight: 600;
+  border: none;
+  border-radius: 3px;
+  cursor: pointer;
+}

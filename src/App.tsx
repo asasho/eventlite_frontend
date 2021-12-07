@@ -1,58 +1,32 @@
-import React from 'react';
-import logo from './logo.svg';
-import { Counter } from './features/counter/Counter';
-import './App.css';
+import { useEffect } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import { AppDispatch } from './app/store'
+import Auth from './components/Auth/Auth'
+import Events from './components/Events/Events'
+import { setOpenSignIn } from './features/auth/authSlice'
+import {
+  fetchAsyncGetEvents,
+  resetIsFlashMessage,
+  selectEvents,
+} from './features/event/eventSlice'
+import Layout from './organisms/Layout/Layout'
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <Counter />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <span>
-          <span>Learn </span>
-          <a
-            className="App-link"
-            href="https://reactjs.org/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            React
-          </a>
-          <span>, </span>
-          <a
-            className="App-link"
-            href="https://redux.js.org/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Redux
-          </a>
-          <span>, </span>
-          <a
-            className="App-link"
-            href="https://redux-toolkit.js.org/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Redux Toolkit
-          </a>
-          ,<span> and </span>
-          <a
-            className="App-link"
-            href="https://react-redux.js.org/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            React Redux
-          </a>
-        </span>
-      </header>
-    </div>
-  );
+const App = () => {
+  const currentUser = localStorage.getItem('user')
+  const dispatch: AppDispatch = useDispatch()
+  const events = useSelector(selectEvents)
+  useEffect(() => {
+    const fetchBootLoader = async () => {
+      if (currentUser) {
+        await dispatch(fetchAsyncGetEvents())
+        await dispatch(resetIsFlashMessage())
+      } else {
+        await dispatch(setOpenSignIn())
+      }
+    }
+    fetchBootLoader()
+  }, [currentUser, dispatch, events.length])
+  return <Layout>{currentUser ? <Events /> : <Auth />}</Layout>
 }
 
-export default App;
+export default App

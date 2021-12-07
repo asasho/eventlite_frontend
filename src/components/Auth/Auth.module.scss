@@ -1,0 +1,45 @@
+@import '../../common/color.scss';
+@import '../../common/style.scss';
+
+.auth_form {
+  position: fixed;
+  left: 50%;
+  top: 150px;
+  transform: translate(-50%, 0);
+  background-color: white;
+  width: 100vw;
+  .auth_form_content {
+    display: flex;
+    flex-direction: column;
+    padding-bottom: 50px;
+    @include container;
+    h2 {
+      text-align: center;
+    }
+    form {
+      display: flex;
+      flex-direction: column;
+      input {
+        height: 35px;
+        margin-bottom: 10px;
+        @include inputStyle;
+      }
+      span {
+        cursor: pointer;
+        text-align: center;
+      }
+      button {
+        background-color: $primary-color;
+        @include buttonStyle;
+      }
+      button:disabled {
+        background-color: $secondary-color;
+        cursor: not-allowed;
+      }
+      .errors {
+        color: $danger-color;
+        margin-bottom: 15px;
+      }
+    }
+  }
+}

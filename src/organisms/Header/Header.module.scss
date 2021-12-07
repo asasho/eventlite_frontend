@@ -1,0 +1,39 @@
+@import '../../common/color.scss';
+@import '../../common/style.scss';
+
+.header {
+  position: fixed;
+  top: 0;
+  left: 50%;
+  transform: translate(-50%, 0);
+  z-index: 10;
+  width: 100vw;
+  .nav {
+    background-color: white;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    h1 {
+      color: $primary-color;
+    }
+    button {
+      width: 100px;
+      margin-right: 10px;
+      margin-top: 10px;
+      @include buttonStyle;
+    }
+    .login_button {
+      background-color: $primary-color;
+    }
+    .signup_button {
+      background-color: $primary-color;
+    }
+    .logout_button {
+      background-color: $danger-color;
+    }
+  }
+  .flash {
+    width: 100vw;
+    background-color: white;
+  }
+}

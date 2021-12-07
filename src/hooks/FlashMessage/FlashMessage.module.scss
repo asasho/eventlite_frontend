@@ -1,0 +1,18 @@
+@import '../../common/color.scss';
+
+.message {
+  width: 100vw;
+  height: 50px;
+  background-color: white;
+  h2 {
+    text-align: center;
+    align-items: center;
+    font-weight: 500;
+  }
+  .success {
+    color: $success-color;
+  }
+  .danger {
+    color: $danger-color;
+  }
+}
